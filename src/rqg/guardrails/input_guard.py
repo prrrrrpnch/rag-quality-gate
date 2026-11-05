@@ -13,7 +13,10 @@ import unicodedata
 from dataclasses import dataclass, field
 
 INJECTION_PATTERNS: dict[str, str] = {
-    "ignore_instructions": r"\b(ignore|disregard|forget|override|bypass)\b.{0,40}\b(previous|prior|above|earlier|all|your|system|the)\b.{0,20}\b(instructions?|rules?|prompts?|guidelines?|directives?)",
+    "ignore_instructions": r"\b(ignor\w*|disregard\w*|forget\w*|override\w*|bypass\w*)\b.{0,40}\b(previous|prior|above|earlier|all|your|system|the)\b.{0,20}\b(instructions?|rules?|prompts?|guidelines?|directives?)",
+    # added after the first safety-suite run found bypasses (docs/evidence/safety_first_run_before_fix.md)
+    "new_instructions": r"\b(new|updated|revised) (instructions?|rules?|directives?)\s*[:\-]|\bsystem override\b",
+    "answer_substitution": r"\b(respond|reply|answer|say|output)\b.{0,40}\binstead of (answering|responding|replying)",
     "role_override": r"\byou are (now|no longer)\b|\bfrom now on,? you\b|\bact as (an? )?(unfiltered|unrestricted|evil|dan|jailbroken|developer)",
     "dan_jailbreak": r"\b(dan|do anything now|developer mode|jailbreak|jailbroken|god mode|no restrictions|without (any )?restrictions|unfiltered mode)\b",
     "prompt_extraction": r"\b(system prompt|initial prompt|hidden prompt|your (instructions|rules|prompt|guidelines)|internal reference|canary)\b|\b(repeat|print|show|reveal|output|display|dump)\b.{0,30}\b(above|everything|instructions|rules|configuration|prompt)\b",
