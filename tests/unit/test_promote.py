@@ -23,8 +23,8 @@ def golden(tmp_path):
 def logged(tmp_path):
     lg = InteractionLogger(tmp_path / "logs")
     rec = lg.log(
-        user_input="Does the kettle work with Alexa? my email is ravi@example.com",
-        answer="Yes, the BrewMate K2 supports Alexa.",
+        user_input="Does the kettle work with my smart speaker? my email is ravi@example.com",
+        answer="Yes, the BrewMate K2 supports smart speakers.",
         trace_id="trace-123",
         model="claude-haiku-5-5",
     )

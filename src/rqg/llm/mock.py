@@ -135,9 +135,8 @@ SYNONYMS = {
     "minutes": "minut",
     "minute": "minut",
     "app": "app",
-    "alexa": "voic",
-    "google": "voic",
     "assistant": "voic",
+    "speaker": "voic",
     "voice": "voic",
 }
 
