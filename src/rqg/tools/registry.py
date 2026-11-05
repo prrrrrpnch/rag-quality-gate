@@ -87,6 +87,10 @@ class ToolRegistry:
         extra = set(args) - {"serial", "slot"}
         if name not in {t.name for t in TOOL_SPECS} or extra:
             return ToolResult(name, args, {"ok": False, "error": "invalid_arguments"}, True, 0)
+        if serial and not warranty.SERIAL_RE.match(serial):
+            # Malformed serial: harmless, let the backend explain the format (failure recovery).
+            out = warranty.check_warranty(serial)
+            return ToolResult(name, args, out, True, 1)
         if serial and serial not in allowed:
             return ToolResult(
                 name,
