@@ -245,8 +245,8 @@ class EvalRunner:
         }
 
 
-def write_run(run: dict[str, Any], reports_dir: Path) -> tuple[Path, Path]:
-    """Write run JSON + markdown report; also refresh ``latest.*``."""
+def write_run(run: dict[str, Any], reports_dir: Path, name: str = "latest") -> tuple[Path, Path]:
+    """Write run JSON + markdown report; also refresh ``<name>.json`` / ``<name>.md``."""
     from rqg.evals.report import render_markdown
 
     reports_dir = Path(reports_dir)
