@@ -13,7 +13,7 @@ evidence that the *gate* works, not as a measurement of a real LLM:
 - The hallucination rate of ~0.98 is inflated for the same reason: the mock appends the uncited
   sentence to almost every answer.
 
-## 1. The regression (branch `demo/regression`, one commit on top of `main`)
+## 1. The regression (branch `demo/regression`: one commit on top of `main` @ `95e59e3`)
 
 One line of the system prompt changed (`src/rqg/rag/prompts.py`):
 
@@ -45,14 +45,14 @@ $ make eval
 | Context recall (label-based) | 0.8095 |
 | Ragas NonLLMStringSimilarity (mean) | 0.1662 |
 | DeepEval vs Ragas faithfulness agreement | n/a |
-| Latency p50 (ms) | 33.05 |
-| Latency p95 (ms) | 43.68 |
+| Latency p50 (ms) | 32.5 |
+| Latency p95 (ms) | 42.73 |
 | Cost per 100 queries (USD, app model) | 0 |
 
 $ make gate        # = python scripts/compare_to_baseline.py
 ## Regression gate: ❌ FAIL — regression detected
 
-baseline `c2d17cb` (dataset v1.0.0, mock) vs run `1744d39` (prompt v1, 108 cases)
+baseline `c2d17cb` (dataset v1.0.0, mock) vs run `d427a17` (prompt v1, 108 cases)
 
 | Metric | Baseline | Current | Delta | Allowed | Status |
 |---|---|---|---|---|---|
@@ -64,7 +64,7 @@ baseline `c2d17cb` (dataset v1.0.0, mock) vs run `1744d39` (prompt v1, 108 cases
 | over_refusal_rate | 0.0471 | 0 | -0.0471 | +0.05 | ✅ PASS |
 | tool_success_rate | 1 | 1 | 0 | -0.0 | ✅ PASS |
 | context_recall_mean | 0.8095 | 0.8095 | 0 | -0.05 | ✅ PASS |
-| latency_p95_ms | 43.81 | 43.68 | -0.13 | +25% (min 50) | ✅ PASS |
+| latency_p95_ms | 43.81 | 42.73 | -1.08 | +25% (min 50) | ✅ PASS |
 | cost_per_100_queries_usd | 0 | 0 | 0 | +25% (min 0.01) | ✅ PASS |
 
 **Newly failing cases (11):** `oos-001`, `oos-003`, `oos-004`, `oos-005`, `oos-006`, `oos-007`, `oos-008`, `oos-009`, `oos-010`, `oos-011`, `oos-015`
@@ -90,7 +90,7 @@ $ git checkout main
 $ make eval && make gate
 ## Regression gate: ✅ PASS
 
-baseline `c2d17cb` (dataset v1.0.0, mock) vs run `286fd61` (prompt v1, 108 cases)
+baseline `c2d17cb` (dataset v1.0.0, mock) vs run `95e59e3` (prompt v1, 108 cases)
 
 | Metric | Baseline | Current | Delta | Allowed | Status |
 |---|---|---|---|---|---|
@@ -102,7 +102,7 @@ baseline `c2d17cb` (dataset v1.0.0, mock) vs run `286fd61` (prompt v1, 108 cases
 | over_refusal_rate | 0.0471 | 0.0471 | 0 | +0.05 | ✅ PASS |
 | tool_success_rate | 1 | 1 | 0 | -0.0 | ✅ PASS |
 | context_recall_mean | 0.8095 | 0.8095 | 0 | -0.05 | ✅ PASS |
-| latency_p95_ms | 43.81 | 48.51 | +4.7 | +25% (min 50) | ✅ PASS |
+| latency_p95_ms | 43.81 | 43.83 | +0.02 | +25% (min 50) | ✅ PASS |
 | cost_per_100_queries_usd | 0 | 0 | 0 | +25% (min 0.01) | ✅ PASS |
 
 
