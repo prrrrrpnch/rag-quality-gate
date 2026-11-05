@@ -83,6 +83,15 @@ def detect_blocked_topic(text: str) -> str | None:
     return None
 
 
+# Extra patterns applied to *retrieved* text only (too aggressive for user input).
+CONTEXT_INSTRUCTION_PATTERNS = (
+    r"\b(assistant|ai|model)s?\b.{0,40}\b(must|should) (say|reply|respond|output)",
+    # added after ii-006 slipped through: "SYSTEM: ...", "[admin] ...", "you must now call ..."
+    r"^\W*(system|admin|assistant|developer)\s*[:\]]",
+    r"\byou (must|should|need to) (now )?(call|use|invoke|book|say|reveal|reply|respond|output)\b",
+)
+
+
 class InputGuard:
     """Blocks prompt-injection attempts and blocked topics before any LLM call."""
 
@@ -103,10 +112,8 @@ class InputGuard:
         """
         kept, dropped = [], False
         for line in text.splitlines():
-            if detect_injection(line) or re.search(
-                r"\b(assistant|ai|model)s?\b.{0,40}\b(must|should) (say|reply|respond|output)",
-                line,
-                re.I,
+            if detect_injection(line) or any(
+                re.search(p, line, re.I) for p in CONTEXT_INSTRUCTION_PATTERNS
             ):
                 dropped = True
                 continue

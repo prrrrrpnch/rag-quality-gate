@@ -317,7 +317,7 @@ class MockSupportLLM(LLMClient):
                 "few minutes or contact Zephyr Home support."
             )
         if err == "unauthorized_serial":
-            return "I can only use serial numbers you have shared with me in this conversation."
+            return out.get("message") or "I can't use that serial number."
         return "Sorry, I couldn't complete that request."
 
     def _answer(

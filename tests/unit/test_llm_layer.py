@@ -62,7 +62,11 @@ def test_mock_tool_result_messages():
     for out, needle in [
         ({"ok": False, "error": "invalid_serial"}, "doesn't look valid"),
         ({"ok": False, "error": "not_found"}, "couldn't find"),
-        ({"ok": False, "error": "unauthorized_serial"}, "only use serial"),
+        (
+            {"ok": False, "error": "unauthorized_serial", "message": "Not registered to you."},
+            "not registered",
+        ),
+        ({"ok": False, "error": "unauthorized_serial"}, "can't use that serial"),
         ({"ok": False, "error": "weird"}, "couldn't complete"),
     ]:
         msg = {"role": "tool", "name": "check_warranty", "content": json.dumps(out)}
