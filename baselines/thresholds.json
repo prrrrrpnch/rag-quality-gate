@@ -1,0 +1,12 @@
+{
+  "pass_rate": {"direction": "higher", "max_regression": 0.02},
+  "hallucination_rate": {"direction": "lower", "max_regression": 0.02},
+  "groundedness_mean": {"direction": "higher", "max_regression": 0.03},
+  "relevance_mean": {"direction": "higher", "max_regression": 0.05},
+  "refusal_recall": {"direction": "higher", "max_regression": 0.0},
+  "over_refusal_rate": {"direction": "lower", "max_regression": 0.05},
+  "tool_success_rate": {"direction": "higher", "max_regression": 0.0},
+  "context_recall_mean": {"direction": "higher", "max_regression": 0.05},
+  "latency_p95_ms": {"direction": "lower", "max_regression_pct": 25, "abs_slack": 50},
+  "cost_per_100_queries_usd": {"direction": "lower", "max_regression_pct": 25, "abs_slack": 0.01}
+}

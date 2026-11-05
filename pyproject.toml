@@ -24,6 +24,7 @@ dependencies = [
   "langsmith==0.14.17",
   "duckdb==2.0.0",
   "boto3==1.43.124",
+  "rapidfuzz==3.14.6",
 ]
 
 [project.optional-dependencies]
