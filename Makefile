@@ -64,8 +64,10 @@ synthetic-logs:  ## seed 1,500 clearly-labelled SYNTHETIC log rows (fixed seed)
 drift-report: synthetic-logs  ## PSI/KS drift report between two windows (exit 3 = ALERT, not an error here)
 	$(PY) scripts/drift_report.py || [ $$? -eq 3 ]
 
-sql-local: synthetic-logs  ## run the Athena SQL checks locally in DuckDB
-	$(PY) scripts/run_athena_checks.py --local
+sql-local: synthetic-logs  ## run the Athena SQL checks locally in DuckDB (synthetic: 5 planted leaks; app logs: 0)
+	$(PY) scripts/run_athena_checks.py --local --log-dir data/synthetic_logs --expect-pii 5
+	@if ls logs/dt=* >/dev/null 2>&1; then \
+	  $(PY) scripts/run_athena_checks.py --local --log-dir logs --expect-pii 0 --out reports/sql_checks_app_logs.md | tail -1; fi
 
 tf-validate:  ## terraform fmt + validate (no apply)
 	cd infra/terraform && terraform fmt -check -recursive && terraform init -backend=false -input=false >/dev/null && terraform validate
