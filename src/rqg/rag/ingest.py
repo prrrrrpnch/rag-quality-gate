@@ -56,7 +56,11 @@ def parse_document(path: Path) -> Document:
 
 def load_corpus(corpus_dir: Path) -> list[Document]:
     """Load every ``*.md`` file in a directory (sorted, so ordering is deterministic)."""
-    docs = [parse_document(p) for p in sorted(Path(corpus_dir).glob("*.md"))]
+    docs = [
+        parse_document(p)
+        for p in sorted(Path(corpus_dir).glob("*.md"))
+        if not p.name.upper().startswith("README")
+    ]
     ids = [d.doc_id for d in docs]
     dupes = {i for i in ids if ids.count(i) > 1}
     if dupes:

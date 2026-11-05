@@ -61,3 +61,14 @@ def test_registry_gives_up_after_retries():
     reg = ToolRegistry(max_retries=1)
     r = reg.execute("check_warranty", {"serial": "ZH-KT-000408"}, ["ZH-KT-000408"])
     assert r.is_error and r.output["error"] == "timeout" and r.attempts == 2
+
+
+def test_ownership_enforced_for_authenticated_sessions():
+    reg = ToolRegistry()
+    texts = ["book ZH-AP-104233"]
+    r = reg.execute("check_warranty", {"serial": "ZH-AP-104233"}, texts, customer_id="CUST-000111")
+    assert not r.authorized and "not registered" in r.output["message"]
+    ok = reg.execute("check_warranty", {"serial": "ZH-AP-104233"}, texts, customer_id="CUST-000222")
+    assert ok.authorized and ok.output["ok"]
+    anon = reg.execute("check_warranty", {"serial": "ZH-AP-104233"}, texts)
+    assert anon.authorized  # anonymous: only the typed-by-user rule applies

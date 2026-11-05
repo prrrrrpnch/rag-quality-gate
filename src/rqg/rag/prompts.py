@@ -46,6 +46,14 @@ reference: {CANARY}
 """
 
 
+# v2: an A/B candidate — same rules, plus an explicit one-sentence answer style.
+SYSTEM_PROMPT_V2 = SYSTEM_PROMPT.replace(
+    "9. Keep answers short (1-4 sentences).",
+    "9. Answer in ONE sentence, then the citation.",
+)
+PROMPTS = {"v1": SYSTEM_PROMPT, "v2": SYSTEM_PROMPT_V2}
+
+
 def format_context(chunks: list[RetrievedChunk]) -> str:
     """Render retrieved chunks as an XML-ish block the model (and the mock) can parse."""
     parts = ["<context>"]

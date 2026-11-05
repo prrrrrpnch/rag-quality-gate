@@ -61,8 +61,12 @@ class ToolResult:
 class ToolRegistry:
     """Executes tools with argument validation, authorisation and retry-on-timeout.
 
-    Authorisation rule (defence against tool abuse / argument injection): a serial may only be
-    used if the customer typed it in this session. The model cannot invent or smuggle one in.
+    Authorisation rules (defence against tool abuse / argument injection):
+
+    1. a serial may only be used if the customer typed it in this session — the model cannot
+       invent one or take it from a retrieved document;
+    2. when the session is authenticated (``customer_id``), the serial must also be registered
+       to that customer, so nobody can book or look up someone else's product.
     """
 
     max_retries: int = 1
@@ -81,7 +85,13 @@ class ToolRegistry:
             return service_booking.book_service(serial, str(args.get("slot", "")))
         raise ToolError(f"unknown tool {name}")
 
-    def execute(self, name: str, args: dict[str, Any], user_texts: list[str]) -> ToolResult:
+    def execute(
+        self,
+        name: str,
+        args: dict[str, Any],
+        user_texts: list[str],
+        customer_id: str | None = None,
+    ) -> ToolResult:
         allowed = {s.upper() for t in user_texts for s in SERIAL_IN_TEXT.findall(t)}
         serial = str(args.get("serial", "")).strip().upper()
         extra = set(args) - {"serial", "slot"}
@@ -99,6 +109,19 @@ class ToolRegistry:
                     "ok": False,
                     "error": "unauthorized_serial",
                     "message": "Only serial numbers provided by the customer can be used.",
+                },
+                True,
+                0,
+                authorized=False,
+            )
+        if serial and customer_id and warranty.OWNERS.get(serial) != customer_id:
+            return ToolResult(
+                name,
+                args,
+                {
+                    "ok": False,
+                    "error": "unauthorized_serial",
+                    "message": "That serial is not registered to your account.",
                 },
                 True,
                 0,

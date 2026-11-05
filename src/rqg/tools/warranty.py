@@ -34,6 +34,14 @@ REGISTRY: dict[str, Registration] = {
     ]
 }
 
+# Ownership (used when a session is authenticated as a customer).
+OWNERS: dict[str, str] = {
+    "ZH-SV-777001": "CUST-000111",
+    "ZH-KT-330417": "CUST-000111",
+    "ZH-AP-104233": "CUST-000222",
+    "ZH-SV-551902": "CUST-000222",
+}
+
 ALWAYS_TIMEOUT = {"ZH-KT-000408"}
 TIMEOUT_ONCE = {"ZH-AP-000504"}
 

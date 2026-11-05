@@ -188,6 +188,7 @@ class MockSupportLLM(LLMClient):
             "grounded": "Answer ONLY from the provided context" in system,
             "prefer_current": 'status "current"' in system,
             "clarify": "ask which model they mean" in system,
+            "one_sentence": "Answer in ONE sentence" in system,
         }
         last_user = max(i for i, m in enumerate(messages) if m["role"] == "user")
         user_raw = messages[last_user]["content"]
@@ -395,6 +396,8 @@ class MockSupportLLM(LLMClient):
                 if sc[0] >= max(self.threshold, 0.85 * best) and sc[2] != chosen[0][2]:
                     chosen.append(sc)
                     break
+        if rules["one_sentence"]:
+            chosen = chosen[:1]
         answer = " ".join(f"{s.rstrip('.')}. [{d}]" for _, d, s in chosen)
         if not rules["grounded"]:
             answer += " This generally applies to all Zephyr Home models as well."

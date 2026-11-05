@@ -126,8 +126,10 @@ class SupportAssistant:
         return self.llm.complete(self.system_prompt, messages, TOOL_SPECS, max_tokens=1024)
 
     @traceable("support_assistant.ask")
-    def ask(self, user_message: str, session_id: str | None = None) -> AssistantResponse:
-        """Answer one user turn within a session."""
+    def ask(
+        self, user_message: str, session_id: str | None = None, customer_id: str | None = None
+    ) -> AssistantResponse:
+        """Answer one user turn within a session (optionally authenticated as ``customer_id``)."""
         t0 = time.perf_counter()
         session_id = session_id or uuid.uuid4().hex[:12]
         trace_id = uuid.uuid4().hex
@@ -189,7 +191,7 @@ class SupportAssistant:
                 }
             )
             for tc in r.tool_calls:
-                res = self.tools.execute(tc.name, tc.args, user_texts_now)
+                res = self.tools.execute(tc.name, tc.args, user_texts_now, customer_id)
                 tool_records.append(
                     ToolCallRecord(
                         res.name, res.args, res.output, res.is_error, res.attempts, res.authorized
