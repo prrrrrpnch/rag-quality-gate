@@ -64,7 +64,7 @@ def test_mock_tool_result_messages():
         ({"ok": False, "error": "not_found"}, "couldn't find"),
         (
             {"ok": False, "error": "unauthorized_serial", "message": "Not registered to you."},
-            "not registered",
+            "Not registered",
         ),
         ({"ok": False, "error": "unauthorized_serial"}, "can't use that serial"),
         ({"ok": False, "error": "weird"}, "couldn't complete"),
