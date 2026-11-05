@@ -34,10 +34,10 @@ SERIAL = re.compile(r"\bZH-(?:AP|KT|SV)-\d{6}\b|\bZH-[A-Z]{1,3}-?\d{1,8}\b", re.
 SLOT = re.compile(r"\b(2026-\d{2}-\d{2})[ T](\d{1,2}):00\b")
 
 BOOK_WORDS = re.compile(
-    r"\b(book|schedule|appointment|technician|service visit|repair visit|send someone)\b", re.I
+    r"\b(book|schedule|appointment|send (someone|a technician)|(need|want) a technician)\b", re.I
 )
 WARRANTY_WORDS = re.compile(r"\b(warranty|guarantee|covered|cover|expire[sd]?|expiry)\b", re.I)
-STATUS_WORDS = re.compile(r"\b(check|status|still|under|valid|active|expired?|mine|my)\b", re.I)
+STATUS_WORDS = re.compile(r"\b(check|status|still|under warranty|valid|active|expired?)\b", re.I)
 COMPARE_WORDS = re.compile(
     r"\b(compare|comparison|difference|differ|vs\.?|versus|both|between|which (one|model)|"
     r"bigger|larger|quieter|louder|heavier|lighter|more|less|better)\b",

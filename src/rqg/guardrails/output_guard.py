@@ -16,6 +16,9 @@ SYSTEM_PROMPT_FINGERPRINTS = (
     "trust the document with status",
 )
 
+# Documented format examples (from the manuals / prompts) are not personal data.
+EXAMPLE_VALUES = frozenset({"ZH-AP-123456"})
+
 LEAK_REPLACEMENT = (
     "I can't share internal configuration. How can I help with your Zephyr Home product?"
 )
@@ -40,7 +43,7 @@ class OutputGuard:
             return OutputGuardResult(LEAK_REPLACEMENT, ["canary_leak_blocked"], [], True)
         if any(fp in low for fp in SYSTEM_PROMPT_FINGERPRINTS):
             return OutputGuardResult(LEAK_REPLACEMENT, ["system_prompt_leak_blocked"], [], True)
-        redacted, findings = redact(text, allow=allowed_values)
+        redacted, findings = redact(text, allow=set(allowed_values or set()) | EXAMPLE_VALUES)
         if findings:
             flags.append("pii_redacted")
         topic = detect_blocked_topic(redacted)

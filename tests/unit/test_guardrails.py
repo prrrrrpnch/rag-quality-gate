@@ -109,3 +109,8 @@ def test_output_guard_redacts_pii_but_allows_own_serial():
 def test_output_guard_flags_topic():
     r = OutputGuard().check("You should invest in stocks.")
     assert "output_topic:financial" in r.flags
+
+
+def test_documented_example_serial_not_redacted():
+    r = OutputGuard().check("Serial numbers look like ZH-AP-123456.")
+    assert "ZH-AP-123456" in r.text and not r.redactions
