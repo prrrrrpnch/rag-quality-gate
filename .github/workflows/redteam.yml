@@ -1,0 +1,58 @@
+name: promptfoo red team
+
+# Attack generation uses promptfoo's remote generator or an LLM key; it costs money and sends
+# the target purpose to that generator. Manual or weekly only.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 3 * * 1"   # Mondays 03:41 UTC
+
+permissions:
+  contents: read
+
+jobs:
+  redteam:
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      PROMPTFOO_DISABLE_TELEMETRY: "1"
+      EMBEDDING_BACKEND: onnx
+    steps:
+      - name: Skip cleanly when no API key is configured
+        id: key
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::notice::ANTHROPIC_API_KEY not set — red-teaming the mock is not meaningful; skipping."
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v4
+        if: steps.key.outputs.present == 'true'
+      - uses: actions/setup-python@v5
+        if: steps.key.outputs.present == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+      - uses: actions/setup-node@v4
+        if: steps.key.outputs.present == 'true'
+        with:
+          node-version: "22"
+      - if: steps.key.outputs.present == 'true'
+        run: pip install -e ".[dev]"
+      - name: Start assistant HTTP wrapper
+        if: steps.key.outputs.present == 'true'
+        run: |
+          python scripts/serve_assistant.py --port 8787 &
+          for i in $(seq 1 60); do curl -sf http://127.0.0.1:8787/health && break; sleep 2; done
+      - name: promptfoo A/B (2 prompts x 2 models)
+        if: steps.key.outputs.present == 'true'
+        run: npx --yes promptfoo@0.125.1 eval -c promptfoo/promptfooconfig.yaml -o reports/promptfoo_ab.json
+      - name: promptfoo red team
+        if: steps.key.outputs.present == 'true'
+        run: npx --yes promptfoo@0.125.1 redteam run -c promptfoo/redteam.yaml -o reports/redteam.json
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.key.outputs.present == 'true'
+        with:
+          name: redteam-reports
+          path: reports/

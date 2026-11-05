@@ -1,0 +1,72 @@
+name: Real-LLM evals
+
+# Costs money: manual or nightly only, never on pull requests.
+on:
+  workflow_dispatch:
+    inputs:
+      subset:
+        description: smoke (25 cases) or full
+        default: smoke
+        type: choice
+        options: [smoke, full]
+  schedule:
+    - cron: "17 21 * * *"   # nightly, 21:17 UTC
+
+permissions:
+  contents: read
+
+jobs:
+  real-eval:
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
+      LANGSMITH_TRACING: ${{ secrets.LANGSMITH_API_KEY != '' && 'true' || 'false' }}
+      MOCK_LLM: "0"
+      EMBEDDING_BACKEND: onnx
+      DEEPEVAL_TELEMETRY_OPT_OUT: "1"
+      JUDGE_REPEATS: "3"
+    steps:
+      - name: Skip cleanly when no API key is configured
+        id: key
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::notice::ANTHROPIC_API_KEY secret not set — skipping real-LLM evals (mock evals run in CI)."
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v4
+        if: steps.key.outputs.present == 'true'
+      - uses: actions/setup-python@v5
+        if: steps.key.outputs.present == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+      - if: steps.key.outputs.present == 'true'
+        run: pip install -e ".[dev]"
+      - name: Restore LLM + judge cache (avoids paying twice for identical calls)
+        if: steps.key.outputs.present == 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/chroma
+            .cache/llm
+          key: rqg-real-${{ github.run_id }}
+          restore-keys: rqg-real-
+      - name: Eval with real app model + judge
+        if: steps.key.outputs.present == 'true'
+        run: python scripts/run_eval.py --subset "${{ inputs.subset || 'smoke' }}"
+      - name: Gate vs real baseline (if one is committed)
+        if: steps.key.outputs.present == 'true'
+        run: |
+          if [ -f baselines/baseline.real.json ]; then python scripts/compare_to_baseline.py;
+          else echo "::notice::no baselines/baseline.real.json yet — run a full real eval and build_baseline.py"; fi
+      - name: Safety suite against the real model
+        if: steps.key.outputs.present == 'true'
+        run: python scripts/run_safety.py
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.key.outputs.present == 'true'
+        with:
+          name: real-eval-reports
+          path: reports/
