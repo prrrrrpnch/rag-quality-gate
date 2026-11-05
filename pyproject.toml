@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rag-quality-gate"
+version = "0.1.0"
+description = "Automated LLM quality gate for a RAG support assistant: DeepEval + Ragas + promptfoo evals, red-team safety suite, LangSmith tracing, CI regression gate, Athena/SQL data validation."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+# Exact pins: eval libraries change quickly and metric behaviour changes with them.
+dependencies = [
+  "anthropic==2.5.0",
+  "openai==3.3.0",
+  "pydantic==2.14.3",
+  "pydantic-settings==2.16.2",
+  "chromadb==1.5.9",
+  "numpy==2.5.4",
+  "scipy==1.18.1",
+  "deepeval==4.3.3",
+  "ragas==0.4.3",
+  "langchain-community==0.3.31",
+  "langsmith==0.14.17",
+  "duckdb==2.0.0",
+  "boto3==1.43.124",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==9.2.0",
+  "pytest-cov==7.1.0",
+  "ruff==0.17.3",
+  "pre-commit==4.7.0",
+  "moto[s3,athena]==5.2.5",
+]
+
+[project.scripts]
+rqg = "rqg.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["E501", "RUF001", "RUF002", "RUF003"]  # E501: ruff format owns wrapping; RUF00x: corpus uses ₹ and dashes
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "eval: golden-dataset evaluation tests (run the assistant)",
+  "safety: red-team attack tests",
+]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::UserWarning"]
+
+[tool.coverage.run]
+source = ["src/rqg"]
+omit = [
+  "src/rqg/llm/anthropic_client.py",
+  "src/rqg/llm/openai_client.py",
+  "src/rqg/cli.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
