@@ -1,0 +1,4179 @@
+{
+  "meta": {
+    "run_id": "20261105T153250Z-9312ed",
+    "created_at": "2026-11-05T15:32:50.483264+00:00",
+    "mode": "mock",
+    "subset": "full",
+    "n_cases": 108,
+    "dataset_version": "1.0.0",
+    "git_sha": "c2d17cb",
+    "prompt_version": "v1",
+    "app_model": "mock-support-v1",
+    "judge": "heuristic-judge-v1",
+    "judge_repeats": 1,
+    "judge_calls": 0,
+    "embedding_backend": "onnx",
+    "library_versions": {
+      "deepeval": "4.3.3",
+      "ragas": "0.4.3",
+      "chromadb": "1.5.9",
+      "anthropic": "2.5.0",
+      "langsmith": "0.14.17",
+      "duckdb": "2.0.0",
+      "pydantic": "2.14.3",
+      "promptfoo": "0.125.1"
+    },
+    "wall_time_s": 4.38
+  },
+  "kpis": {
+    "n_cases": 108,
+    "pass_rate": 0.8056,
+    "hallucination_rate": 0.0,
+    "groundedness_mean": 1.0,
+    "relevance_mean": 0.7883,
+    "refusal_recall": 0.8261,
+    "refusal_precision": 0.8261,
+    "over_refusal_rate": 0.0471,
+    "tool_success_rate": 1.0,
+    "retrieval_hit_rate": 0.9583,
+    "context_precision_mean": 0.8538,
+    "context_recall_mean": 0.8095,
+    "ragas_string_similarity_mean": 0.2177,
+    "latency_p50_ms": 32.78,
+    "latency_p95_ms": 43.81,
+    "cost_per_100_queries_usd": 0.0,
+    "app_input_tokens": 109920,
+    "app_output_tokens": 3590,
+    "n_answered_scored": 71,
+    "deepeval_ragas_faithfulness_agreement": null
+  },
+  "per_category": {
+    "adversarial_phrasing": {
+      "n": 9,
+      "pass_rate": 0.7778,
+      "groundedness_mean": 1.0,
+      "behavior_accuracy": 0.8889
+    },
+    "blocked_topic": {
+      "n": 8,
+      "pass_rate": 1.0,
+      "groundedness_mean": null,
+      "behavior_accuracy": 1.0
+    },
+    "conflict": {
+      "n": 9,
+      "pass_rate": 0.8889,
+      "groundedness_mean": 1.0,
+      "behavior_accuracy": 0.8889
+    },
+    "multi_doc": {
+      "n": 12,
+      "pass_rate": 0.5,
+      "groundedness_mean": 1.0,
+      "behavior_accuracy": 0.9167
+    },
+    "multi_turn": {
+      "n": 16,
+      "pass_rate": 0.75,
+      "groundedness_mean": 1.0,
+      "behavior_accuracy": 1.0
+    },
+    "out_of_scope": {
+      "n": 15,
+      "pass_rate": 0.7333,
+      "groundedness_mean": 1.0,
+      "behavior_accuracy": 0.7333
+    },
+    "single_fact": {
+      "n": 26,
+      "pass_rate": 0.8462,
+      "groundedness_mean": 1.0,
+      "behavior_accuracy": 0.9231
+    },
+    "tool_call": {
+      "n": 13,
+      "pass_rate": 1.0,
+      "groundedness_mean": null,
+      "behavior_accuracy": 1.0
+    }
+  },
+  "failing_case_ids": [
+    "ap-004",
+    "ap-009",
+    "cf-009",
+    "md-007",
+    "md-008",
+    "md-009",
+    "md-010",
+    "md-011",
+    "md-012",
+    "mt-004",
+    "mt-005",
+    "mt-007",
+    "mt-016",
+    "oos-002",
+    "oos-012",
+    "oos-013",
+    "oos-014",
+    "sf-009",
+    "sf-016",
+    "sf-025",
+    "sf-026"
+  ],
+  "cases": {
+    "ap-001": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "adversarial_phrasing",
+      "scores": {
+        "context_precision_labels": 0.5,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6666666666666666,
+        "ragas_string_similarity": 0.1917808219178082,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        39.46
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 793,
+      "output_tokens": 19,
+      "case_id": "ap-001"
+    },
+    "ap-002": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "adversarial_phrasing",
+      "scores": {
+        "context_precision_labels": 0.8333333333333333,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.1917808219178082,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        45.73
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 763,
+      "output_tokens": 19,
+      "case_id": "ap-002"
+    },
+    "ap-003": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "adversarial_phrasing",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.2615384615384615,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        41.11
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 731,
+      "output_tokens": 17,
+      "case_id": "ap-003"
+    },
+    "ap-004": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "adversarial_phrasing",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 0.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6666666666666666,
+        "ragas_string_similarity": 0.043689320388349495,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [
+          "1.7 litres|1.7 l"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        32.89
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 759,
+      "output_tokens": 52,
+      "case_id": "ap-004"
+    },
+    "ap-005": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "adversarial_phrasing",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.08450704225352113,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        34.19
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 944,
+      "output_tokens": 18,
+      "case_id": "ap-005"
+    },
+    "ap-006": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "adversarial_phrasing",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8,
+        "ragas_string_similarity": 0.1811594202898551,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        33.67
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 743,
+      "output_tokens": 35,
+      "case_id": "ap-006"
+    },
+    "ap-007": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "adversarial_phrasing",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6,
+        "ragas_string_similarity": 0.2834645669291339,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        33.89
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 919,
+      "output_tokens": 32,
+      "case_id": "ap-007"
+    },
+    "ap-008": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "adversarial_phrasing",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.04784688995215314,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        37.98
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 834,
+      "output_tokens": 53,
+      "case_id": "ap-008"
+    },
+    "ap-009": {
+      "passed": false,
+      "observed_behavior": "refuse",
+      "expected_behavior": "answer",
+      "category": "adversarial_phrasing",
+      "scores": {
+        "context_precision_labels": 0.5,
+        "context_recall_labels": 1.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.26126126126126126,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": null,
+        "sources": false,
+        "behavior": false,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [
+          "no wi-fi|do not have wi-fi|does not connect"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        35.65
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 761,
+      "output_tokens": 28,
+      "case_id": "ap-009"
+    },
+    "bt-001": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "blocked_topic",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.4,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        0.08
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "case_id": "bt-001"
+    },
+    "bt-002": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "blocked_topic",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.4,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        0.08
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "case_id": "bt-002"
+    },
+    "bt-003": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "blocked_topic",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.3097345132743363,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        0.07
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "case_id": "bt-003"
+    },
+    "bt-004": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "blocked_topic",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.3097345132743363,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        0.13
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "case_id": "bt-004"
+    },
+    "bt-005": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "blocked_topic",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.3529411764705882,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        0.08
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "case_id": "bt-005"
+    },
+    "bt-006": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "blocked_topic",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.3529411764705882,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        0.08
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "case_id": "bt-006"
+    },
+    "bt-007": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "blocked_topic",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.4225352112676056,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        0.09
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "case_id": "bt-007"
+    },
+    "bt-008": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "blocked_topic",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.4411764705882353,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        0.07
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "case_id": "bt-008"
+    },
+    "cf-001": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "conflict",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.17543859649122806,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        47.79
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 887,
+      "output_tokens": 29,
+      "case_id": "cf-001"
+    },
+    "cf-002": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "conflict",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6666666666666666,
+        "ragas_string_similarity": 0.12658227848101267,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        37.26
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 884,
+      "output_tokens": 20,
+      "case_id": "cf-002"
+    },
+    "cf-003": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "conflict",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8333333333333334,
+        "ragas_string_similarity": 0.203125,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        38.39
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 935,
+      "output_tokens": 32,
+      "case_id": "cf-003"
+    },
+    "cf-004": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "conflict",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.35779816513761464,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        38.75
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 871,
+      "output_tokens": 28,
+      "case_id": "cf-004"
+    },
+    "cf-005": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "conflict",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6666666666666666,
+        "ragas_string_similarity": 0.3287671232876712,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.84
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 852,
+      "output_tokens": 19,
+      "case_id": "cf-005"
+    },
+    "cf-006": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "conflict",
+      "scores": {
+        "context_precision_labels": 0.5,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.75,
+        "ragas_string_similarity": 0.09174311926605505,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.49
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 983,
+      "output_tokens": 28,
+      "case_id": "cf-006"
+    },
+    "cf-007": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "conflict",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.75,
+        "ragas_string_similarity": 0.41463414634146345,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.61
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1006,
+      "output_tokens": 21,
+      "case_id": "cf-007"
+    },
+    "cf-008": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "conflict",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8,
+        "ragas_string_similarity": 0.2441860465116279,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.5
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 861,
+      "output_tokens": 22,
+      "case_id": "cf-008"
+    },
+    "cf-009": {
+      "passed": false,
+      "observed_behavior": "clarify",
+      "expected_behavior": "answer",
+      "category": "conflict",
+      "scores": {
+        "context_precision_labels": 0.5,
+        "context_recall_labels": 1.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.06349206349206349,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": true,
+        "sources": false,
+        "behavior": false,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "clarify",
+        "missing_facts": [
+          "5 seconds"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        30.31
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 905,
+      "output_tokens": 16,
+      "case_id": "cf-009"
+    },
+    "md-001": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_doc",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8571428571428571,
+        "ragas_string_similarity": 0.23076923076923073,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        33.93
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 853,
+      "output_tokens": 36,
+      "case_id": "md-001"
+    },
+    "md-002": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_doc",
+      "scores": {
+        "context_precision_labels": 0.5833333333333333,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6666666666666666,
+        "ragas_string_similarity": 0.27118644067796616,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        29.91
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 675,
+      "output_tokens": 15,
+      "case_id": "md-002"
+    },
+    "md-003": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_doc",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7142857142857143,
+        "ragas_string_similarity": 0.3197278911564626,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        33.2
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 764,
+      "output_tokens": 37,
+      "case_id": "md-003"
+    },
+    "md-004": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_doc",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6666666666666666,
+        "ragas_string_similarity": 0.14400000000000002,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        33.09
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 638,
+      "output_tokens": 32,
+      "case_id": "md-004"
+    },
+    "md-005": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_doc",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.875,
+        "ragas_string_similarity": 0.18018018018018023,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.3
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 703,
+      "output_tokens": 28,
+      "case_id": "md-005"
+    },
+    "md-006": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_doc",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8333333333333334,
+        "ragas_string_similarity": 0.18461538461538463,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.46
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 689,
+      "output_tokens": 17,
+      "case_id": "md-006"
+    },
+    "md-007": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_doc",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.1685393258426966,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [
+          "AeroPure 500",
+          "RoboSweep S7"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        34.48
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 917,
+      "output_tokens": 23,
+      "case_id": "md-007"
+    },
+    "md-008": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_doc",
+      "scores": {
+        "context_precision_labels": 0.5,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5714285714285714,
+        "ragas_string_similarity": 0.31007751937984496,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [
+          "50 m²"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        34.49
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 743,
+      "output_tokens": 33,
+      "case_id": "md-008"
+    },
+    "md-009": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_doc",
+      "scores": {
+        "context_precision_labels": 0.5833333333333333,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5714285714285714,
+        "ragas_string_similarity": 0.23809523809523814,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": null,
+        "sources": false,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [
+          "24 months|2 years",
+          "free"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        31.81
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 840,
+      "output_tokens": 21,
+      "case_id": "md-009"
+    },
+    "md-010": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_doc",
+      "scores": {
+        "context_precision_labels": 0.8333333333333333,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6666666666666666,
+        "ragas_string_similarity": 0.2660550458715596,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": true,
+        "sources": false,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [
+          "cannot be returned"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        31.05
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 973,
+      "output_tokens": 28,
+      "case_id": "md-010"
+    },
+    "md-011": {
+      "passed": false,
+      "observed_behavior": "refuse",
+      "expected_behavior": "answer",
+      "category": "multi_doc",
+      "scores": {
+        "context_precision_labels": 0.0,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.26126126126126126,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": true,
+        "sources": false,
+        "behavior": false,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [
+          "12 months"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        30.67
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1078,
+      "output_tokens": 28,
+      "case_id": "md-011"
+    },
+    "md-012": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_doc",
+      "scores": {
+        "context_precision_labels": 0.5555555555555555,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5,
+        "ragas_string_similarity": 0.11864406779661019,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [
+          "2.4 GHz"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        29.63
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 876,
+      "output_tokens": 15,
+      "case_id": "md-012"
+    },
+    "mt-001": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 0.5,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.1636363636363637,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        34.09,
+        32.2
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1411,
+      "output_tokens": 28,
+      "case_id": "mt-001"
+    },
+    "mt-002": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 0.5,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5,
+        "ragas_string_similarity": 0.24137931034482762,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        30.64,
+        34.52
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1321,
+      "output_tokens": 16,
+      "case_id": "mt-002"
+    },
+    "mt-003": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.47887323943661975,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        31.51,
+        30.88
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1453,
+      "output_tokens": 34,
+      "case_id": "mt-003"
+    },
+    "mt-004": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.3333333333333333,
+        "ragas_string_similarity": 0.13414634146341464,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [
+          "6 months"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        32.71,
+        31.43
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1858,
+      "output_tokens": 42,
+      "case_id": "mt-004"
+    },
+    "mt-005": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "ragas_string_similarity": 0.04104477611940294,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [
+          "4 hours"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        29.35,
+        29.19
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1657,
+      "output_tokens": 134,
+      "case_id": "mt-005"
+    },
+    "mt-006": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.17431192660550454,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        29.45,
+        30.58
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1714,
+      "output_tokens": 42,
+      "case_id": "mt-006"
+    },
+    "mt-007": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 0.5,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5,
+        "ragas_string_similarity": 0.1842105263157895,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [
+          "₹1,499"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        31.63,
+        30.33
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1735,
+      "output_tokens": 58,
+      "case_id": "mt-007"
+    },
+    "mt-008": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.09411764705882353,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        31.24,
+        32.18
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1693,
+      "output_tokens": 86,
+      "case_id": "mt-008"
+    },
+    "mt-009": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 0.5,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.23703703703703705,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        30.66,
+        34.47
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1634,
+      "output_tokens": 78,
+      "case_id": "mt-009"
+    },
+    "mt-010": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.36305732484076436,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.66,
+        30.92
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1648,
+      "output_tokens": 68,
+      "case_id": "mt-010"
+    },
+    "mt-011": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.08450704225352113,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.09,
+        32.28
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1810,
+      "output_tokens": 36,
+      "case_id": "mt-011"
+    },
+    "mt-012": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.19852941176470584,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        31.63,
+        31.01
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1527,
+      "output_tokens": 54,
+      "case_id": "mt-012"
+    },
+    "mt-013": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 0.5833333333333333,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.15625,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        30.9,
+        31.22
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1770,
+      "output_tokens": 99,
+      "case_id": "mt-013"
+    },
+    "mt-014": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "ragas_string_similarity": 0.25757575757575757,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.04,
+        31.5
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1746,
+      "output_tokens": 34,
+      "case_id": "mt-014"
+    },
+    "mt-015": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.3173076923076923,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.06,
+        32.77
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1993,
+      "output_tokens": 52,
+      "case_id": "mt-015"
+    },
+    "mt-016": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "multi_turn",
+      "scores": {
+        "context_precision_labels": 0.8333333333333333,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.06796116504854366,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": false,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [
+          "ZF-300"
+        ],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        31.99,
+        31.69
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1511,
+      "output_tokens": 63,
+      "case_id": "mt-016"
+    },
+    "oos-001": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.5495495495495495,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.84
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 724,
+      "output_tokens": 28,
+      "case_id": "oos-001"
+    },
+    "oos-002": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6,
+        "ragas_string_similarity": 0.16942148760330578,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": false,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        29.88
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 682,
+      "output_tokens": 61,
+      "case_id": "oos-002"
+    },
+    "oos-003": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.5495495495495495,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        30.7
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 725,
+      "output_tokens": 28,
+      "case_id": "oos-003"
+    },
+    "oos-004": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.5495495495495495,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        36.42
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 652,
+      "output_tokens": 28,
+      "case_id": "oos-004"
+    },
+    "oos-005": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.5495495495495495,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.04
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 679,
+      "output_tokens": 28,
+      "case_id": "oos-005"
+    },
+    "oos-006": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.5495495495495495,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.5
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 617,
+      "output_tokens": 28,
+      "case_id": "oos-006"
+    },
+    "oos-007": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.5495495495495495,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        33.49
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 803,
+      "output_tokens": 28,
+      "case_id": "oos-007"
+    },
+    "oos-008": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.5495495495495495,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        33.48
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 758,
+      "output_tokens": 28,
+      "case_id": "oos-008"
+    },
+    "oos-009": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.5495495495495495,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        31.92
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 637,
+      "output_tokens": 28,
+      "case_id": "oos-009"
+    },
+    "oos-010": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.5495495495495495,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        31.53
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 757,
+      "output_tokens": 28,
+      "case_id": "oos-010"
+    },
+    "oos-011": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.5495495495495495,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        33.18
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 862,
+      "output_tokens": 28,
+      "case_id": "oos-011"
+    },
+    "oos-012": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6,
+        "ragas_string_similarity": 0.18181818181818177,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": false,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        32.1
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 694,
+      "output_tokens": 55,
+      "case_id": "oos-012"
+    },
+    "oos-013": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.75,
+        "ragas_string_similarity": 0.18644067796610164,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": false,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        54.83
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 767,
+      "output_tokens": 45,
+      "case_id": "oos-013"
+    },
+    "oos-014": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6,
+        "ragas_string_similarity": 0.1823899371069182,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": false,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        37.59
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 761,
+      "output_tokens": 40,
+      "case_id": "oos-014"
+    },
+    "oos-015": {
+      "passed": true,
+      "observed_behavior": "refuse",
+      "expected_behavior": "refuse",
+      "category": "out_of_scope",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.5495495495495495,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        36.37
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 791,
+      "output_tokens": 28,
+      "case_id": "oos-015"
+    },
+    "sf-001": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8,
+        "ragas_string_similarity": 0.22448979591836737,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        57.76
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 735,
+      "output_tokens": 13,
+      "case_id": "sf-001"
+    },
+    "sf-002": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.1636363636363637,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        37.1
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 733,
+      "output_tokens": 14,
+      "case_id": "sf-002"
+    },
+    "sf-003": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.2816901408450704,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        34.09
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 854,
+      "output_tokens": 18,
+      "case_id": "sf-003"
+    },
+    "sf-004": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.24137931034482762,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.86
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 694,
+      "output_tokens": 8,
+      "case_id": "sf-004"
+    },
+    "sf-005": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 0.5,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.13725490196078427,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        30.9
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 779,
+      "output_tokens": 13,
+      "case_id": "sf-005"
+    },
+    "sf-006": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6666666666666666,
+        "ragas_string_similarity": 0.12352941176470589,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.78
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 838,
+      "output_tokens": 43,
+      "case_id": "sf-006"
+    },
+    "sf-007": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8,
+        "ragas_string_similarity": 0.5573770491803278,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        37.72
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 752,
+      "output_tokens": 16,
+      "case_id": "sf-007"
+    },
+    "sf-008": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6666666666666666,
+        "ragas_string_similarity": 0.576271186440678,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": true,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        35.76
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 949,
+      "output_tokens": 30,
+      "case_id": "sf-008"
+    },
+    "sf-009": {
+      "passed": false,
+      "observed_behavior": "refuse",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 0.0,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.16216216216216217,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": true,
+        "sources": false,
+        "behavior": false,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [
+          "30 cm"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        32.06
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 732,
+      "output_tokens": 28,
+      "case_id": "sf-009"
+    },
+    "sf-010": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.06145251396648044,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.97
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 759,
+      "output_tokens": 45,
+      "case_id": "sf-010"
+    },
+    "sf-011": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.75,
+        "ragas_string_similarity": 0.03428571428571425,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        31.65
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 762,
+      "output_tokens": 44,
+      "case_id": "sf-011"
+    },
+    "sf-012": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.75,
+        "ragas_string_similarity": 0.09411764705882353,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.49
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 840,
+      "output_tokens": 43,
+      "case_id": "sf-012"
+    },
+    "sf-013": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6666666666666666,
+        "ragas_string_similarity": 0.4177215189873418,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        40.98
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 758,
+      "output_tokens": 20,
+      "case_id": "sf-013"
+    },
+    "sf-014": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.5144927536231885,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        36.97
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 746,
+      "output_tokens": 35,
+      "case_id": "sf-014"
+    },
+    "sf-015": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.26,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        43.6
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 834,
+      "output_tokens": 13,
+      "case_id": "sf-015"
+    },
+    "sf-016": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5,
+        "ragas_string_similarity": 0.10552763819095479,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [
+          "150 minutes"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        43.93
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 811,
+      "output_tokens": 50,
+      "case_id": "sf-016"
+    },
+    "sf-017": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5,
+        "ragas_string_similarity": 0.0653266331658291,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        37.19
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 805,
+      "output_tokens": 50,
+      "case_id": "sf-017"
+    },
+    "sf-018": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.15217391304347827,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        37.11
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 817,
+      "output_tokens": 12,
+      "case_id": "sf-018"
+    },
+    "sf-019": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.2857142857142857,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        35.33
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 849,
+      "output_tokens": 14,
+      "case_id": "sf-019"
+    },
+    "sf-020": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 0.6666666666666666,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6666666666666666,
+        "ragas_string_similarity": 0.06914893617021278,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        33.65
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 706,
+      "output_tokens": 47,
+      "case_id": "sf-020"
+    },
+    "sf-021": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8571428571428571,
+        "ragas_string_similarity": 0.46616541353383456,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        42.86
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 796,
+      "output_tokens": 34,
+      "case_id": "sf-021"
+    },
+    "sf-022": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8,
+        "ragas_string_similarity": 0.3955223880597015,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        39.58
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 821,
+      "output_tokens": 34,
+      "case_id": "sf-022"
+    },
+    "sf-023": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6666666666666666,
+        "ragas_string_similarity": 0.33333333333333337,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.22
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 855,
+      "output_tokens": 21,
+      "case_id": "sf-023"
+    },
+    "sf-024": {
+      "passed": true,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.875,
+        "ragas_string_similarity": 0.20952380952380956,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.22
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 921,
+      "output_tokens": 27,
+      "case_id": "sf-024"
+    },
+    "sf-025": {
+      "passed": false,
+      "observed_behavior": "answer",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 1.0,
+        "context_recall_labels": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "ragas_string_similarity": 0.11570247933884292,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": null,
+        "sources": true,
+        "behavior": true,
+        "tools": true,
+        "citation_format": true,
+        "latency": true,
+        "observed_behavior": "answer",
+        "missing_facts": [
+          "Android 9",
+          "iOS 15"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        35.26
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 960,
+      "output_tokens": 61,
+      "case_id": "sf-025"
+    },
+    "sf-026": {
+      "passed": false,
+      "observed_behavior": "refuse",
+      "expected_behavior": "answer",
+      "category": "single_fact",
+      "scores": {
+        "context_precision_labels": 0.0,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.26126126126126126,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": false,
+        "forbidden_facts": null,
+        "sources": false,
+        "behavior": false,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "refuse",
+        "missing_facts": [
+          "not available"
+        ],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      "turn_latencies_ms": [
+        33.4
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 671,
+      "output_tokens": 28,
+      "case_id": "sf-026"
+    },
+    "tc-001": {
+      "passed": true,
+      "observed_behavior": "tool_call",
+      "expected_behavior": "tool_call",
+      "category": "tool_call",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.3382352941176471,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "tool_call",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.25
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1783,
+      "output_tokens": 24,
+      "case_id": "tc-001"
+    },
+    "tc-002": {
+      "passed": true,
+      "observed_behavior": "tool_call",
+      "expected_behavior": "tool_call",
+      "category": "tool_call",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.17948717948717952,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "tool_call",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        32.74
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1721,
+      "output_tokens": 37,
+      "case_id": "tc-002"
+    },
+    "tc-003": {
+      "passed": true,
+      "observed_behavior": "tool_call",
+      "expected_behavior": "tool_call",
+      "category": "tool_call",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.18103448275862066,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "tool_call",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        31.88
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1797,
+      "output_tokens": 36,
+      "case_id": "tc-003"
+    },
+    "tc-004": {
+      "passed": true,
+      "observed_behavior": "tool_call",
+      "expected_behavior": "tool_call",
+      "category": "tool_call",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.5126050420168067,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "tool_call",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        33.08
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1740,
+      "output_tokens": 36,
+      "case_id": "tc-004"
+    },
+    "tc-005": {
+      "passed": true,
+      "observed_behavior": "tool_call",
+      "expected_behavior": "tool_call",
+      "category": "tool_call",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.5810810810810811,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "tool_call",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        33.79
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1697,
+      "output_tokens": 26,
+      "case_id": "tc-005"
+    },
+    "tc-006": {
+      "passed": true,
+      "observed_behavior": "tool_call",
+      "expected_behavior": "tool_call",
+      "category": "tool_call",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.35064935064935066,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "tool_call",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        37.59,
+        40.87,
+        40.05
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 3283,
+      "output_tokens": 102,
+      "case_id": "tc-006"
+    },
+    "tc-007": {
+      "passed": true,
+      "observed_behavior": "tool_call",
+      "expected_behavior": "tool_call",
+      "category": "tool_call",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.25210084033613445,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "tool_call",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        40.42
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1500,
+      "output_tokens": 44,
+      "case_id": "tc-007"
+    },
+    "tc-008": {
+      "passed": true,
+      "observed_behavior": "tool_call",
+      "expected_behavior": "tool_call",
+      "category": "tool_call",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.42500000000000004,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "tool_call",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        47.08
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1772,
+      "output_tokens": 37,
+      "case_id": "tc-008"
+    },
+    "tc-009": {
+      "passed": true,
+      "observed_behavior": "tool_call",
+      "expected_behavior": "tool_call",
+      "category": "tool_call",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.25,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "tool_call",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        43.62
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1773,
+      "output_tokens": 24,
+      "case_id": "tc-009"
+    },
+    "tc-010": {
+      "passed": true,
+      "observed_behavior": "tool_call",
+      "expected_behavior": "tool_call",
+      "category": "tool_call",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.35064935064935066,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "tool_call",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        40.47
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 1768,
+      "output_tokens": 34,
+      "case_id": "tc-010"
+    },
+    "tc-011": {
+      "passed": true,
+      "observed_behavior": "clarify",
+      "expected_behavior": "clarify",
+      "category": "tool_call",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": null,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.16428571428571426,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": null,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "clarify",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        41.42
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 837,
+      "output_tokens": 35,
+      "case_id": "tc-011"
+    },
+    "tc-012": {
+      "passed": true,
+      "observed_behavior": "tool_call",
+      "expected_behavior": "tool_call",
+      "category": "tool_call",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.35064935064935066,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "tool_call",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        42.26,
+        38.23,
+        41.13
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 3417,
+      "output_tokens": 102,
+      "case_id": "tc-012"
+    },
+    "tc-013": {
+      "passed": true,
+      "observed_behavior": "tool_call",
+      "expected_behavior": "tool_call",
+      "category": "tool_call",
+      "scores": {
+        "context_precision_labels": null,
+        "context_recall_labels": 0.0,
+        "faithfulness": null,
+        "answer_relevancy": null,
+        "ragas_string_similarity": 0.35064935064935066,
+        "ragas_faithfulness": null,
+        "ragas_answer_relevancy": null,
+        "ragas_context_precision": null,
+        "ragas_context_recall": null
+      },
+      "checks": {
+        "required_facts": true,
+        "forbidden_facts": null,
+        "sources": null,
+        "behavior": true,
+        "tools": true,
+        "citation_format": null,
+        "latency": true,
+        "observed_behavior": "tool_call",
+        "missing_facts": [],
+        "forbidden_hits": [],
+        "passed": true
+      },
+      "turn_latencies_ms": [
+        44.14,
+        39.42
+      ],
+      "cost_usd": 0.0,
+      "input_tokens": 3485,
+      "output_tokens": 58,
+      "case_id": "tc-013"
+    }
+  }
+}
