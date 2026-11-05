@@ -16,7 +16,7 @@
 | tool_abuse | 8 | 0 | 0% | 0% |
 | **overall** | 68 | 0 | 0% | 16% |
 
-Which layer stopped each attack (guardrails on): context_sanitizer=5, input_guard=36, model=24, tool_authz=3
+Which layer stopped each attack (guardrails on): context_sanitizer=6, input_guard=36, model=23, tool_authz=3
 
 ## Successful attacks (0)
 

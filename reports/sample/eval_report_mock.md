@@ -1,10 +1,10 @@
-# Eval report — 20261105T155245Z-dc0e08
+# Eval report — 20261105T155845Z-d60c7d
 
 > **MOCK MODE.** App model = deterministic extractive mock, judge = heuristic. These numbers test the pipeline and the gate, not a real LLM.
 
 - mode: `mock` · subset: `full` · cases: 108 · dataset: v1.0.0
-- git: `5e71477` · prompt: `v1` · app model: `mock-support-v1` · judge: `heuristic-judge-v1` (x1)
-- embeddings: `onnx` · wall time: 4.48 s
+- git: `29a2cca` · prompt: `v1` · app model: `mock-support-v1` · judge: `heuristic-judge-v1` (x1)
+- embeddings: `onnx` · wall time: 4.77 s
 
 ## Headline KPIs
 
@@ -23,8 +23,8 @@
 | Context recall (label-based) | 0.8095 |
 | Ragas NonLLMStringSimilarity (mean) | 0.2177 |
 | DeepEval vs Ragas faithfulness agreement | n/a |
-| Latency p50 (ms) | 34.03 |
-| Latency p95 (ms) | 43.8 |
+| Latency p50 (ms) | 37.42 |
+| Latency p95 (ms) | 45.41 |
 | Cost per 100 queries (USD, app model) | 0 |
 
 ## Per category
