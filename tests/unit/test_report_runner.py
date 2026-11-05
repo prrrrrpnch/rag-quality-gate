@@ -73,3 +73,29 @@ def test_kpis_edge_cases():
         "cases": [],
     }
     assert "MOCK" not in render_markdown(run)
+
+
+def test_write_run_named_does_not_touch_latest(settings, tmp_path):
+    run = {
+        "meta": {
+            "run_id": "r1",
+            "mode": "mock",
+            "subset": "demo",
+            "n_cases": 0,
+            "dataset_version": "1.0.0",
+            "git_sha": "a",
+            "prompt_version": "v1",
+            "app_model": "m",
+            "judge": "j",
+            "judge_repeats": 1,
+            "embedding_backend": "onnx",
+            "wall_time_s": 0,
+            "judge_calls": 0,
+        },
+        "kpis": compute_kpis([]),
+        "per_category": {},
+        "cases": [],
+    }
+    _, md = write_run(run, tmp_path, name="demo")
+    assert md.name == "demo.md" and (tmp_path / "demo.json").exists()
+    assert not (tmp_path / "latest.json").exists()

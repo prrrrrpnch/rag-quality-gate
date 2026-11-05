@@ -114,7 +114,7 @@ More detail: [`docs/architecture.md`](docs/architecture.md).
 
 ## Quickstart
 
-**Mock mode (no key, ~2 minutes):**
+**Mock mode (no key; about 3 minutes on a fresh machine, mostly `pip install`):**
 
 ```bash
 git clone https://github.com/OWNER/rag-quality-gate.git && cd rag-quality-gate

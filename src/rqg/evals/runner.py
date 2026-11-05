@@ -254,10 +254,10 @@ def write_run(run: dict[str, Any], reports_dir: Path, name: str = "latest") -> t
     jp = reports_dir / "runs" / f"{run['meta']['run_id']}.json"
     jp.write_text(json.dumps(run, indent=2, ensure_ascii=False), encoding="utf-8")
     md_text = render_markdown(run)
-    (reports_dir / "latest.json").write_text(
+    (reports_dir / f"{name}.json").write_text(
         json.dumps(run, indent=2, ensure_ascii=False), encoding="utf-8"
     )
-    mp = reports_dir / "latest.md"
+    mp = reports_dir / f"{name}.md"
     mp.write_text(md_text, encoding="utf-8")
     return jp, mp
 
