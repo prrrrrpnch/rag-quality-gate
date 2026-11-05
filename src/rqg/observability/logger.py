@@ -31,6 +31,7 @@ LOG_FIELDS = (
     "user_input_redacted",
     "answer_redacted",
     "eval_scores",
+    "synthetic",
 )
 
 
@@ -56,6 +57,7 @@ class InteractionLogger:
         record["guardrail_flags"] = list(record["guardrail_flags"] or [])
         record["tools_called"] = list(record["tools_called"] or [])
         record["retrieved_doc_ids"] = list(record["retrieved_doc_ids"] or [])
+        record["synthetic"] = bool(record["synthetic"])
         if self.enabled:
             dt = datetime.fromisoformat(record["ts"])
             p = self.path_for(dt)

@@ -61,8 +61,8 @@ redteam:  ## promptfoo red team (needs a generator: promptfoo cloud or an LLM ke
 synthetic-logs:  ## seed 1,500 clearly-labelled SYNTHETIC log rows (fixed seed)
 	$(PY) scripts/generate_synthetic_logs.py
 
-drift-report: synthetic-logs  ## PSI/KS drift report between two windows
-	$(PY) scripts/drift_report.py
+drift-report: synthetic-logs  ## PSI/KS drift report between two windows (exit 3 = ALERT, not an error here)
+	$(PY) scripts/drift_report.py || [ $$? -eq 3 ]
 
 sql-local: synthetic-logs  ## run the Athena SQL checks locally in DuckDB
 	$(PY) scripts/run_athena_checks.py --local
