@@ -13,7 +13,7 @@ evidence that the *gate* works, not as a measurement of a real LLM:
 - The hallucination rate of ~0.98 is inflated for the same reason: the mock appends the uncited
   sentence to almost every answer.
 
-## 1. The regression (branch `demo/regression`)
+## 1. The regression (branch `demo/regression`, one commit on top of `main`)
 
 One line of the system prompt changed (`src/rqg/rag/prompts.py`):
 
@@ -26,7 +26,8 @@ One line of the system prompt changed (`src/rqg/rag/prompts.py`):
 ## 2. Gate on `demo/regression`: FAIL (exit code 1)
 
 ```text
-$ git checkout demo/regression && make eval && make gate
+$ git checkout demo/regression
+$ make eval
 ## Headline KPIs
 
 | KPI | Value |
@@ -44,13 +45,14 @@ $ git checkout demo/regression && make eval && make gate
 | Context recall (label-based) | 0.8095 |
 | Ragas NonLLMStringSimilarity (mean) | 0.1662 |
 | DeepEval vs Ragas faithfulness agreement | n/a |
-| Latency p50 (ms) | 35.48 |
-| Latency p95 (ms) | 45.84 |
+| Latency p50 (ms) | 33.05 |
+| Latency p95 (ms) | 43.68 |
 | Cost per 100 queries (USD, app model) | 0 |
 
+$ make gate        # = python scripts/compare_to_baseline.py
 ## Regression gate: ❌ FAIL — regression detected
 
-baseline `c2d17cb` (dataset v1.0.0, mock) vs run `deebd98` (prompt v1, 108 cases)
+baseline `c2d17cb` (dataset v1.0.0, mock) vs run `1744d39` (prompt v1, 108 cases)
 
 | Metric | Baseline | Current | Delta | Allowed | Status |
 |---|---|---|---|---|---|
@@ -62,31 +64,33 @@ baseline `c2d17cb` (dataset v1.0.0, mock) vs run `deebd98` (prompt v1, 108 cases
 | over_refusal_rate | 0.0471 | 0 | -0.0471 | +0.05 | ✅ PASS |
 | tool_success_rate | 1 | 1 | 0 | -0.0 | ✅ PASS |
 | context_recall_mean | 0.8095 | 0.8095 | 0 | -0.05 | ✅ PASS |
-| latency_p95_ms | 43.81 | 45.84 | +2.03 | +25% (min 50) | ✅ PASS |
+| latency_p95_ms | 43.81 | 43.68 | -0.13 | +25% (min 50) | ✅ PASS |
 | cost_per_100_queries_usd | 0 | 0 | 0 | +25% (min 0.01) | ✅ PASS |
 
 **Newly failing cases (11):** `oos-001`, `oos-003`, `oos-004`, `oos-005`, `oos-006`, `oos-007`, `oos-008`, `oos-009`, `oos-010`, `oos-011`, `oos-015`
 
-demo/regression: compare_to_baseline.py exit=1
+exit code: 1
 ```
 
-What one of the newly failing cases looks like (from `reports/latest.md` on the branch):
+Two of the newly failing cases (from `reports/latest.md` on the branch). `oos-001` is
+"What is the capital of France?":
 
 ```text
 | oos-001 | out_of_scope | refuse → answer | behavior, citation_format | Yes, that is supported on Zephyr Home products and usually takes about 2 hours. |
 | oos-006 | out_of_scope | refuse → answer | behavior, citation_format | Yes, that is supported on Zephyr Home products and usually takes about 2 hours. |
 ```
 
-The CI job `eval-gate` runs the same `scripts/compare_to_baseline.py` and fails the PR on a
-non-zero exit; the gate table is posted as a PR comment.
+The CI job `eval-gate` runs the same `scripts/compare_to_baseline.py`, fails the PR on a
+non-zero exit, and posts the gate table as a PR comment.
 
 ## 3. Gate on `main`: PASS (exit code 0)
 
 ```text
-$ git checkout main && make eval && make gate
+$ git checkout main
+$ make eval && make gate
 ## Regression gate: ✅ PASS
 
-baseline `c2d17cb` (dataset v1.0.0, mock) vs run `5e71477` (prompt v1, 108 cases)
+baseline `c2d17cb` (dataset v1.0.0, mock) vs run `286fd61` (prompt v1, 108 cases)
 
 | Metric | Baseline | Current | Delta | Allowed | Status |
 |---|---|---|---|---|---|
@@ -98,7 +102,7 @@ baseline `c2d17cb` (dataset v1.0.0, mock) vs run `5e71477` (prompt v1, 108 cases
 | over_refusal_rate | 0.0471 | 0.0471 | 0 | +0.05 | ✅ PASS |
 | tool_success_rate | 1 | 1 | 0 | -0.0 | ✅ PASS |
 | context_recall_mean | 0.8095 | 0.8095 | 0 | -0.05 | ✅ PASS |
-| latency_p95_ms | 43.81 | 44.79 | +0.98 | +25% (min 50) | ✅ PASS |
+| latency_p95_ms | 43.81 | 48.51 | +4.7 | +25% (min 50) | ✅ PASS |
 | cost_per_100_queries_usd | 0 | 0 | 0 | +25% (min 0.01) | ✅ PASS |
 
 
@@ -108,10 +112,8 @@ exit code: 0
 ## Reproduce
 
 ```bash
-git checkout demo/regression
-make eval gate        # exits non-zero
-git checkout main
-make eval gate        # exits 0
+git checkout demo/regression && make eval gate   # exits non-zero
+git checkout main && make eval gate              # exits 0
 ```
 
 Unit tests also pin this behaviour: `tests/unit/test_assistant.py::test_degraded_prompt_hallucinates`
