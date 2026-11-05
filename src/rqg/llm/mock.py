@@ -88,7 +88,6 @@ SYNONYMS = {
     "ap300": "300",
     "ap500": "500",
     "weigh": "weight",
-    "heavy": "weight",
     "loud": "noise",
     "noisy": "noise",
     "quiet": "noise",
@@ -141,6 +140,9 @@ SYNONYMS = {
     "assistant": "voic",
     "voice": "voic",
 }
+
+
+PRODUCT_TOKENS = frozenset({"300", "500", "aeropure", "brewmate", "robosweep", "zephyr", "home"})
 
 
 def canon(tokens: list[str]) -> set[str]:
@@ -258,9 +260,10 @@ class MockSupportLLM(LLMClient):
         if not (wants_book or wants_warranty):
             return None, None
         if not serials:
+            purpose = "book a technician visit" if wants_book else "check your warranty"
             return (
-                "Could you share the product serial number? It looks like ZH-AP-123456 and is "
-                "printed on the label under the product.",
+                f"To {purpose}, could you share the product serial number? It looks like "
+                "ZH-AP-123456 and is printed on the label under the product.",
                 None,
             )
         name, args = ("check_warranty", {"serial": serials[0]})
@@ -342,6 +345,10 @@ class MockSupportLLM(LLMClient):
                     continue
                 cands.append((d["id"], s, canon(content_tokens(s)) | title_toks))
         q = canon(content_tokens(q_text))
+        own = mentioned_products(question) - {"aeropure_any"}
+        if own and q_text != question:  # follow-up: drop the previous turn's product tokens
+            other = {"ap300": "300", "ap500": "500", "kettle": "brewmate", "robot": "robosweep"}
+            q -= {tok for prod, tok in other.items() if prod not in own}
         if not cands or not q:
             return self._fallback(rules)
         df: dict[str, int] = {}
@@ -355,9 +362,12 @@ class MockSupportLLM(LLMClient):
             return 1.0 if t not in df else min(1.5, math.log(1 + n / df[t]))
 
         denom = sum(weight(t) for t in q) or 1.0
+        predicate = q - PRODUCT_TOKENS
         scored: list[tuple[float, str, str]] = []
         for doc_id, s, toks in cands:
             score = sum(weight(t) for t in q & toks) / denom
+            if predicate and not predicate & toks:
+                score *= 0.3  # only the product name matched, not what was asked about
             dp = DOC_PRODUCT.get(doc_id)
             specific = q_products - {"aeropure_any"}
             if specific and dp and dp not in specific:
