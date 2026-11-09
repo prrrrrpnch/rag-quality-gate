@@ -38,22 +38,25 @@ Full golden set: 108 cases, dataset v1.0.0 ([`reports/sample/eval_report_mock.md
 
 | Suite | Result |
 |---|---|
-| Unit tests | 182 passed, **92 %** line coverage on `src/rqg` (client wrappers excluded) |
+| Unit tests | 185 passed, **92 %** line coverage on `src/rqg` (client wrappers excluded) |
 | Per-case DeepEval suites (`deepeval test run tests/evals`) | 87 passed, 21 xfailed (known baseline failures) |
 | Safety suite, must-never-succeed set (31 attacks) | **31/31 held** |
 | Safety suite, all 68 attacks | 0 % attack success with guardrails, 16 % with guardrails off (naive mock) |
 | promptfoo A/B (8 tests × 2 prompts × 2 models) | prompt v1 7/8, v2 6/8: v2 breaks comparison answers |
 | SQL PII check | finds exactly the 5 planted leaks in synthetic logs, 0 in the app's real logs |
 | Terraform | `fmt -check` and `validate` pass (never applied) |
+| GitHub Actions | every job green on `main` (lint, unit tests, eval + gate + gate self-test + safety + SQL, Terraform) |
 
 ### The gate failing and passing
 
-Removing one line ("answer ONLY from the provided context") from the system prompt on branch
-`demo/regression`, then on `main`. This is captured terminal output, abridged; the full version is in
-[`docs/gate-demo.md`](docs/gate-demo.md).
+`make gate-demo` removes one line ("answer ONLY from the provided context") from the system
+prompt in a throwaway git worktree, runs the full eval and the gate there, then repeats on the
+untouched code. CI runs it on every push. Captured terminal output, abridged (full output in
+[`docs/gate-demo.md`](docs/gate-demo.md)):
 
 ```text
-$ git checkout demo/regression && make eval && make gate
+$ make gate-demo
+== 2/3  full eval + gate WITH the regression (expected: FAIL)
 ## Regression gate: ❌ FAIL — regression detected
 | Metric             | Baseline | Current | Delta   | Allowed | Status  |
 | pass_rate          | 0.8056   | 0.7037  | -0.1019 | -0.02   | ❌ FAIL |
@@ -64,11 +67,13 @@ $ git checkout demo/regression && make eval && make gate
 | tool_success_rate  | 1        | 1       | 0       | -0.0    | ✅ PASS |
   ... (4 more rows pass)
 **Newly failing cases (11):** oos-001, oos-003, oos-004, ... oos-015
-exit code: 1
+   gate exit code with regression: 1
 
-$ git checkout main && make eval && make gate
-## Regression gate: ✅ PASS      (all 10 metrics within tolerance)
-exit code: 0
+== 3/3  full eval + gate on your checkout (expected: PASS)
+## Regression gate: ✅ PASS
+   gate exit code without regression: 0
+
+GATE DEMO OK: the gate failed on the regression and passed on the clean code.
 ```
 
 The size of the drop is a property of the mock: without the grounding rule it guesses on every
@@ -114,46 +119,42 @@ More detail: [`docs/architecture.md`](docs/architecture.md).
 
 ## Quickstart
 
-**Mock mode (no key; about 3 minutes on a fresh machine, mostly `pip install`):**
+Full step-by-step guide, prerequisites and troubleshooting: **[SETUP.md](SETUP.md)**.
+You need git, make and **Python 3.11–3.13** (macOS: `brew install python@3.12`). No API key is
+needed. About 5 minutes on a fresh machine, mostly `pip install`.
 
 ```bash
 git clone https://github.com/prrrrrpnch/rag-quality-gate.git && cd rag-quality-gate
 ```
 
 ```bash
-make setup
+make setup      # checks prerequisites, creates .venv, installs, downloads the embedding model, smoke-checks
 ```
 
 ```bash
-make demo
-```
-
-`make demo` ingests the corpus, runs a few live queries (including an injection, a blocked topic
-and a tool call) and a 12-case mini eval. Next: `make test`, `make eval gate`, `make safety`,
-`make sql-local`, `make drift-report`. Run `make help` to list all targets.
-Requirements: Python 3.11+ and network access on first run, to install packages and download the
-~80 MB ONNX embedding model to `~/.cache/chroma`. `make redteam` and `make promptfoo-ab` also need Node.js.
-
-**Real mode (Anthropic key):**
-
-```bash
-make setup
+make verify     # lint + 185 unit tests + 25-case eval + regression gate (~30 s)
 ```
 
 ```bash
-cp .env.example .env   # then set ANTHROPIC_API_KEY=... and MOCK_LLM=0
+make demo       # live questions (injection, blocked topic, tool call, follow-up) + mini eval
+```
+
+Then: `make eval gate`, `make gate-demo`, `make safety`, `make sql-local`, `make drift-report`.
+`make help` lists every target. `make promptfoo-ab` and `make redteam` also need Node.js.
+
+**Real mode (Anthropic key):** in `.env` (created by `make setup`) set `ANTHROPIC_API_KEY=...`
+and `MOCK_LLM=0`, then:
+
+```bash
+make eval-fast  # 25-case smoke run; prints tokens and estimated cost
 ```
 
 ```bash
-make eval-fast         # 25-case smoke run; prints tokens and estimated cost
+make baseline   # full run, writes baselines/baseline.real.json
 ```
 
 ```bash
-make baseline          # full run, writes baselines/baseline.real.json
-```
-
-```bash
-make gate              # compares the next run against that baseline
+make gate       # compares the next run against that baseline
 ```
 
 Calls are cached on disk (`.cache/llm`), so re-running the same code on the same data costs
@@ -290,8 +291,6 @@ repo passes one explicitly.
   No production data exists.
 - **Retrieval** uses all-MiniLM-L6-v2 (Chroma's ONNX build) because the build environment could not reach
   Hugging Face. It is a small model, and the lexical re-rank compensates for exact codes.
-- **CI action versions** (`actions/checkout@v4` etc.) were pinned from knowledge and checked with
-  `actionlint`. They are verified by the first GitHub Actions run, not before.
 - The corpus, brand, products, serial numbers and people are fictional.
 
 ## Roadmap

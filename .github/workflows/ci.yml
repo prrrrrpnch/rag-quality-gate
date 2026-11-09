@@ -93,6 +93,8 @@ jobs:
           echo "exit=$?" >> "$GITHUB_OUTPUT"
           pytest tests/safety -q
           echo "pytest_exit=$?" >> "$GITHUB_OUTPUT"
+      - name: Gate self-test (must FAIL on a deliberate regression, PASS on this commit)
+        run: make gate-demo PY=python
       - name: SQL data-validation checks (DuckDB)
         run: |
           python scripts/generate_synthetic_logs.py
