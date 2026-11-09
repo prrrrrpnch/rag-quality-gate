@@ -33,6 +33,9 @@ step 1/5 "Checking prerequisites"
 command -v git >/dev/null || fail "git not found (macOS: xcode-select --install)"
 ok "git $(git --version | awk '{print $3}')"
 PYTHON=""
+if [ -n "${PYTHON_BIN:-}" ] && ! py_ok "$PYTHON_BIN"; then
+  fail "PYTHON_BIN=$PYTHON_BIN is not Python 3.11-3.13 ($("$PYTHON_BIN" --version 2>&1 || echo 'not found'))"
+fi
 for cand in "${PYTHON_BIN:-}" python3.12 python3.13 python3.11 python3; do
   [ -n "$cand" ] && command -v "$cand" >/dev/null && py_ok "$cand" && { PYTHON="$(command -v "$cand")"; break; }
 done
