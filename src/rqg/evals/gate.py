@@ -97,7 +97,13 @@ def compare(
     shared = [cid for cid in base_cases if cid in run_cases]
     missing = sorted(cid for cid in base_cases if cid not in run_cases)
     cur_kpis = compute_kpis([run_cases[c] for c in shared]) if shared else {}
-    base_kpis = baseline["kpis"]
+    # Recompute the baseline on the same case ids too, so a subset run (e.g. the 25-case
+    # smoke set) is compared with the baseline's numbers for those cases, not all 108.
+    base_kpis = (
+        baseline["kpis"]
+        if len(shared) == len(base_cases)
+        else compute_kpis([base_cases[c] for c in shared])
+    )
     rows = [
         check_metric(m, base_kpis.get(m), cur_kpis.get(m), rule) for m, rule in thresholds.items()
     ]

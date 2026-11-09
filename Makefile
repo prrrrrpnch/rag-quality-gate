@@ -6,17 +6,20 @@ export DEEPEVAL_TELEMETRY_OPT_OUT := 1
 export PROMPTFOO_DISABLE_TELEMETRY := 1
 export ANONYMIZED_TELEMETRY := False
 
-.PHONY: help setup lint format test eval-fast eval eval-pytest safety redteam promptfoo-ab \
+.PHONY: help setup verify gate-demo lint format test eval-fast eval eval-pytest safety redteam promptfoo-ab \
         gate baseline drift-report synthetic-logs sql-local tf-validate demo serve clean
 
 help:  ## list targets
 	@grep -E '^[a-z-]+:.*##' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-16s %s\n", $$1, $$2}'
 
-setup:  ## create .venv and install (pinned) deps
-	python3 -m venv $(VENV)
-	$(VENV)/bin/pip install -q --upgrade pip
-	$(VENV)/bin/pip install -q -e ".[dev]"
-	@echo "setup done. Mock mode is used automatically when no API key is set."
+setup:  ## one-command setup: checks prerequisites, creates .venv, installs, smoke-checks
+	bash scripts/setup.sh
+
+verify:  ## post-setup check: lint + unit tests + 25-case eval + regression gate
+	$(MAKE) lint test eval-fast gate
+
+gate-demo:  ## prove the gate: apply a deliberate prompt regression in a temp worktree (FAIL), then main (PASS)
+	PY=$(PY) bash scripts/gate_demo.sh
 
 lint:  ## ruff lint + format check
 	$(PY) -m ruff check .
@@ -80,4 +83,4 @@ demo:  ## ingest, a few live queries, a mini eval and the report
 
 clean:
 	rm -rf reports/runs reports/latest.* reports/gate.md reports/safety* .pytest_cache .ruff_cache \
-	  .coverage coverage.xml htmlcov logs data/synthetic_logs .deepeval
+	  .coverage coverage.xml htmlcov logs data/synthetic_logs .deepeval reports/demo.* reports/promptfoo_ab.json

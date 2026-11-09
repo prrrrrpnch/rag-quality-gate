@@ -42,3 +42,23 @@ def test_defaults_and_tracing(monkeypatch):
 
 def test_git_sha_is_string():
     assert isinstance(git_sha(), str) and git_sha()
+
+
+def test_git_sha_marks_dirty_tree(tmp_path, monkeypatch):
+    import subprocess
+
+    import rqg.config as cfg
+
+    subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
+    for k, v in {"user.email": "t@example.com", "user.name": "t"}.items():
+        subprocess.run(["git", "-C", str(tmp_path), "config", k, v], check=True)
+    (tmp_path / "f.txt").write_text("a")
+    subprocess.run(["git", "-C", str(tmp_path), "add", "."], check=True)
+    subprocess.run(["git", "-C", str(tmp_path), "commit", "-qm", "init"], check=True)
+    monkeypatch.setattr(cfg, "REPO_ROOT", tmp_path)
+    clean = cfg.git_sha()
+    assert clean and not clean.endswith("-dirty") and len(cfg.git_sha(short=False)) == 40
+    (tmp_path / "f.txt").write_text("b")
+    assert cfg.git_sha() == f"{clean}-dirty"
+    monkeypatch.setattr(cfg, "REPO_ROOT", tmp_path / "nope")
+    assert cfg.git_sha() == "unknown"

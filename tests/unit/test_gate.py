@@ -141,3 +141,17 @@ def test_threshold_file_loading(tmp_path):
     p = tmp_path / "t.json"
     p.write_text('{"pass_rate": {"direction": "higher", "max_regression": 0.5}}')
     assert load_thresholds(p)["pass_rate"]["max_regression"] == 0.5
+
+
+def test_subset_run_compared_on_same_cases():
+    # baseline: 40 passing + 10 failing cases; a run containing only the 10 failing ones
+    # must be compared with the baseline's numbers for those 10, not the whole set.
+    cases = [row(f"c-{i:03d}") for i in range(40)] + [
+        row(f"f-{i:03d}", passed=False) for i in range(10)
+    ]
+    b = make_baseline(run_of(cases))
+    subset = [row(f"f-{i:03d}", passed=False) for i in range(10)]
+    res = compare(b, run_of(subset))
+    pr = next(r for r in res.rows if r.metric == "pass_rate")
+    assert pr.baseline == 0.0 and pr.current == 0.0 and res.passed
+    assert len(res.missing_cases) == 40

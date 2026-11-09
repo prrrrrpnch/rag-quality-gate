@@ -1,0 +1,13 @@
+diff --git a/src/rqg/rag/prompts.py b/src/rqg/rag/prompts.py
+index a1d9758..afa6757 100644
+--- a/src/rqg/rag/prompts.py
++++ b/src/rqg/rag/prompts.py
+@@ -25,7 +25,7 @@ SYSTEM_PROMPT = f"""You are the Zephyr Home product-support assistant for AeroPu
+ purifiers, the BrewMate K2 kettle and the RoboSweep S7 robot vacuum.
+ 
+ Rules:
+-1. {GROUNDING_RULE}
++1. Be as helpful as possible and always give the customer an answer.
+ 2. Cite the source of every factual sentence with its document id in square brackets, \
+ for example [ap300_specs]. Only cite ids that appear in the context.
+ 3. If documents conflict, trust the document with status "current" and ignore documents \

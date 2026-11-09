@@ -88,12 +88,17 @@ def get_settings() -> Settings:
 
 
 def git_sha(short: bool = True) -> str:
-    """Current git sha, or 'unknown' outside a git checkout."""
-    try:
-        args = ["git", "rev-parse", "--short" if short else "HEAD", "HEAD"]
-        if not short:
-            args = ["git", "rev-parse", "HEAD"]
-        out = subprocess.run(args, capture_output=True, text=True, check=True, cwd=REPO_ROOT)
+    """Current git sha (``-dirty`` if tracked files are modified), or 'unknown' outside git."""
+
+    def run(*args: str) -> str:
+        out = subprocess.run(
+            ["git", *args], capture_output=True, text=True, check=True, cwd=REPO_ROOT
+        )
         return out.stdout.strip()
+
+    try:
+        sha = run("rev-parse", "--short", "HEAD") if short else run("rev-parse", "HEAD")
+        dirty = run("status", "--porcelain", "--untracked-files=no")
+        return f"{sha}-dirty" if dirty else sha
     except (OSError, subprocess.CalledProcessError):
         return "unknown"
