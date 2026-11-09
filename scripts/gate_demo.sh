@@ -8,6 +8,11 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PY="${PY:-$ROOT/.venv/bin/python}"
+case "$PY" in
+  /*) ;;                                  # already absolute
+  */*) PY="$ROOT/$PY" ;;                   # relative path (e.g. .venv/bin/python from make)
+  *) PY="$(command -v "$PY" || true)" ;;   # bare command name (e.g. python)
+esac
 [ -x "$PY" ] || PY="$(command -v python3)"
 WT="$(mktemp -d "${TMPDIR:-/tmp}/rqg-gate-demo.XXXXXX")"
 
