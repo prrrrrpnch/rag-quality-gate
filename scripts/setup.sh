@@ -77,7 +77,9 @@ PY
 fi
 
 step 5/5 "Smoke check"
-"$VENV/bin/python" scripts/validate_golden.py | head -1 | sed 's/^/  /'
+golden="$("$VENV/bin/python" scripts/validate_golden.py)" || fail "golden dataset validation failed:
+$golden"
+ok "${golden%%$'\n'*}"
 answer="$(DEEPEVAL_TELEMETRY_OPT_OUT=1 "$VENV/bin/rqg" ask "What is the filter life of the AeroPure 500?" 2>/dev/null)"
 case "$answer" in
   *"8 months"*) ok "assistant answered: $answer" ;;
