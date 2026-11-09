@@ -1,6 +1,6 @@
 # rag-quality-gate
 
-[![CI](https://github.com/OWNER/rag-quality-gate/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/rag-quality-gate/actions/workflows/ci.yml)
+[![CI](https://github.com/prrrrrpnch/rag-quality-gate/actions/workflows/ci.yml/badge.svg)](https://github.com/prrrrrpnch/rag-quality-gate/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -117,7 +117,7 @@ More detail: [`docs/architecture.md`](docs/architecture.md).
 **Mock mode (no key; about 3 minutes on a fresh machine, mostly `pip install`):**
 
 ```bash
-git clone https://github.com/OWNER/rag-quality-gate.git && cd rag-quality-gate
+git clone https://github.com/prrrrrpnch/rag-quality-gate.git && cd rag-quality-gate
 ```
 
 ```bash
